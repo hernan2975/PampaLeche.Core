@@ -1,0 +1,68 @@
+PampaLeche.Core/
+├── .gitignore
+├── Directory.Build.props
+├── README.md
+├── PampaLeche.sln
+│
+├── src/
+│   ├── PampaLeche.Domain/             # Capa de dominio (puro, sin dependencias)
+│   │   ├── Entities/
+│   │   │   ├── MilkBatch.cs
+│   │   │   ├── SensorReading.cs
+│   │   │   └── QualityCertificate.cs
+│   │   ├── ValueObjects/
+│   │   │   ├── Temperature.cs
+│   │   │   ├── FatContent.cs
+│   │   │   └── GeoLocation.cs
+│   │   ├── Enums/
+│   │   │   ├── MilkOrigin.cs
+│   │   │   ├── DestinationType.cs
+│   │   │   └── QualityStatus.cs
+│   │   ├── Interfaces/
+│   │   │   ├── IRepository.cs
+│   │   │   └── IEventPublisher.cs
+│   │   └── DomainEvents/
+│   │       ├── BatchCreatedEvent.cs
+│   │       └── QualityThresholdBreachedEvent.cs
+│   │
+│   ├── PampaLeche.Application/        # Casos de uso, servicios de aplicación
+│   │   ├── Commands/
+│   │   │   └── RegisterMilkBatchCommand.cs
+│   │   ├── Queries/
+│   │   │   └── GetBatchByCodeQuery.cs
+│   │   ├── Services/
+│   │   │   ├── QualityControlService.cs
+│   │   │   └── ComplianceService.cs
+│   │   └── Behaviors/
+│   │       └── ValidationBehavior.cs   # MediatR pipeline
+│   │
+│   ├── PampaLeche.Infrastructure/     # Persistencia, sensores, eventos
+│   │   ├── Persistence/
+│   │   │   ├── ApplicationDbContext.cs
+│   │   │   ├── Configurations/
+│   │   │   └── Repositories/
+│   │   ├── Sensors/
+│   │   │   ├── ISensorAdapter.cs
+│   │   │   ├── MockTankSensor.cs
+│   │   │   └── ModbusTankSensor.cs      # para PLC reales (opcional)
+│   │   ├── Messaging/
+│   │   │   └── LocalEventBus.cs         # sin dependencia externa (offline-first)
+│   │   └── Compliance/
+│   │       └── PampeanRegulationEngine.cs
+│   │
+│   └── PampaLeche.Presentation/       # CLI + API mínima
+│       ├── Cli/
+│       │   └── Program.cs              # modo terminal (producción real)
+│       └── Api/
+│           ├── Program.cs
+│           └── Controllers/
+│               └── BatchesController.cs
+│
+├── tests/
+│   ├── PampaLeche.Domain.Tests/
+│   ├── PampaLeche.Application.Tests/
+│   └── PampaLeche.IntegrationTests/
+│
+└── scripts/
+    ├── deploy-offline.ps1
+    └── generate-senasa-report.ps1
