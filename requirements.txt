@@ -1,0 +1,21 @@
+# Requisitos para entorno de desarrollo .NET 8 (PampaLeche.Core)
+# Ejecutar en Windows, Linux o macOS con .NET 8 SDK
+
+## SDK requerido
+dotnet-sdk-8.0
+
+## Paquetes NuGet (instalados automáticamente al compilar)
+# (no se requiere pip/Python — este archivo es solo guía para operativos)
+
+## Opcional: para sensores Modbus reales
+EasyModbusTCP >= 5.7.0
+
+## Herramientas recomendadas
+# - Visual Studio 2022 17.8+ o VS Code + extensión C#
+# - SQLite Browser (para inspeccionar data/batches.db)
+# - PowerShell 7+ (para scripts de despliegue)
+
+## Entorno objetivo
+# - Windows 10/11
+# - Ubuntu 20.04+/Debian 11+
+# - Raspberry Pi OS (64-bit) para linux-arm64
